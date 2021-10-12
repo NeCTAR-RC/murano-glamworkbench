@@ -1,0 +1,148 @@
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
+#  not use this file except in compliance with the License. You may obtain
+#  a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+
+Version: 2.4
+
+Templates:
+  customVolumeAttachment:
+    '/dev/vdb':
+      ?:
+        type: io.murano.resources.ExistingCinderVolume
+      openstackId: $.volumeConfiguration.volume
+
+Application:
+  ?:
+    type: au.org.nectar.GLAMWorkbench
+  password: $.userConfiguration.password
+  workbench: $.userConfiguration.workbench
+  instance:
+    ?:
+      type: io.murano.resources.LinuxMuranoInstance
+    name: generateHostname($.recordSetConfiguration.unitNamingPattern, 1)
+    flavor: $.instanceConfiguration.flavor
+    keyname: $.instanceConfiguration.keyPair
+    availabilityZone: $.instanceConfiguration.availabilityZone
+    volumes: switch($.volumeConfiguration.volume, $=''=>null, $!=null=>$customVolumeAttachment)
+    image: $.instanceConfiguration.osImage
+  recordSet:
+    ?:
+      type: io.murano.resources.RecordSet
+    zone: $.recordSetConfiguration.zone
+    name: generateHostname($.recordSetConfiguration.unitNamingPattern, 1)
+
+Forms:
+  - instanceConfiguration:
+      fields:
+        - name: flavor
+          type: flavor
+          label: Instance flavor
+          description: >-
+            Select your desired flavor. Consider that application performance
+            will be affected by your choice.
+        - name: osImage
+          type: image
+          imageType: linux.docker
+          label: Instance image
+          description: >-
+            Select valid image for the application.
+        - name: keyPair
+          type: keypair
+          label: Key pair
+          description: >-
+            Select the keypair to control access to instances. You can login
+            to the instance using SSH with this keypair after the deployment
+            has completed.
+          required: false
+        - name: availabilityZone
+          type: azone
+          label: Availability zone
+          description: >-
+            Select availability zone where the application would be created.
+            If you plan to use a volume for your data, this will need match
+            the Availability Zone of the volume.
+  - recordSetConfiguration:
+      fields:
+        - name: unitNamingPattern
+          type: string
+          label: Host name
+          required: false
+          maxLength: 64
+          regexpValidator: '^[a-z0-9]([a-z0-9-]*[a-z0-9])?$'
+          errorMessages:
+            invalid: Just lowercase letters, numbers and hyphens are allowed.
+          helpText: Just lowercase letters, numbers and hyphens are allowed.
+          description: >-
+            Specify a string, that will be used in instance hostname and possible
+            DNS entry. Just letters, numbers and hyphens are allowed.
+        - name: zone
+          type: zone
+          label: DNS zone
+          description: >-
+            Select DNS zone if you'd like a DNS entry created for you.
+            A HTTPS certificate will be provisioned for you automatically if
+            you choose a zone.
+          required: false
+  - volumeConfiguration:
+      fields:
+        - name: title
+          type: string
+          required: false
+          hidden: true
+          description: >-
+            It is recommended that provide a volume for the data storage of
+            this application. If provided, all user data will be stored on
+            this volume and will persist even if the application is deleted.
+        - name: volume
+          type: volume
+          label: Existing Volume
+          description: >-
+            You can create a new volume from the Project > Volumes > Volumes
+            tab and must be created in the same Availablity Zone as your
+            application.
+          required: false
+  - userConfiguration:
+      fields:
+        - name: workbench
+          type: choice
+          choices:  [
+            ["trove-newspapers", "Trove newspapers"],
+            ["trove-books", "Trove books"],
+            ["trove-lists", "Trove lists and tags"],
+            ["anu-archives", "ANU Archives"],
+            ["trove-newspaper-harvester", "Trove newspaper & gazette harvester"],
+            ["recordsearch", "Record Search"],
+            ["web-archives", "Web Archives"],
+            ["csv-explorer", "CSV Explorer"],
+          ]
+          label: Workbench
+          descriptionTitle: workbench
+          description: >-
+            Choose the workbench you want to install.
+            The options are from: 
+            https://hub.docker.com/u/glamworkbench.
+        - name: title
+          type: string
+          required: false
+          hidden: true
+          description: >-
+            Details provided here will configure the user account for
+            application, which is required to log into GLAMWorkbench and the
+            remote desktop or via SSH.
+        - name: password
+          type: password
+          label: Password
+          descriptionTitle: Password
+          description: >-
+            Provide password for the new user account.
+            It should be at least 7 characters, 1 capital letter,
+            1 digit and 1 specical char, except single quotes (').
+
