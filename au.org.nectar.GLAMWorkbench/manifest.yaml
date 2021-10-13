@@ -15,9 +15,16 @@ Type: Application
 FullName: au.org.nectar.GLAMWorkbench
 Name: GLAM Workbench
 Description: |
-  GLAM Workbench
-Author: NeCTAR
+  The GLAM Workbench is a collection of Jupyter notebooks to help researchers 
+  harvest, analyse, visualise, and share data from galleries, libraries, 
+  archives, and museums (the GLAM sector). Using this package, you can install 
+  tools to work with collections from Trove, the National Archives of 
+  Australia and more. See https://glam-workbench.net/ for information and 
+  support.
+Author: NeCTAR and Tim Sherratt
 Tags:
   - BigData
+  - HASS
+  - Jupyter
 Classes:
  au.org.nectar.GLAMWorkbench: GLAMWorkbench.yaml

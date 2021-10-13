@@ -59,4 +59,4 @@ su - $USERNAME -c "mkdir ~/work"
 eval HOMEDIR=~$USERNAME
 
 # Spin up the container
-docker run -d --rm -p 8888:8888 --name "$WORKBENCH" -v "$HOMEDIR/work:/home/jovyan/work" "glamworkbench/$WORKBENCH" repo2docker-entrypoint jupyter lab --ip 0.0.0.0 --ServerApp.token="$PASSWORD" --LabApp.default_url='/lab/tree/index.md'
+docker run -d --rm -p 8888:8888 --name "$WORKBENCH" -v "$HOMEDIR/work:/home/jovyan/work" "quay.io/glamworkbench/$WORKBENCH" repo2docker-entrypoint jupyter lab --ip 0.0.0.0 --ServerApp.token="$PASSWORD" --LabApp.default_url='/lab/tree/index.ipynb'

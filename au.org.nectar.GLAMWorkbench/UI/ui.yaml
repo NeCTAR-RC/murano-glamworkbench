@@ -115,27 +115,23 @@ Forms:
           type: choice
           choices:  [
             ["trove-newspapers", "Trove newspapers"],
-            ["trove-books", "Trove books"],
-            ["trove-lists", "Trove lists and tags"],
-            ["anu-archives", "ANU Archives"],
             ["trove-newspaper-harvester", "Trove newspaper & gazette harvester"],
             ["recordsearch", "Record Search"],
-            ["web-archives", "Web Archives"],
-            ["csv-explorer", "CSV Explorer"],
+            ["web-archives", "Web Archives"]
           ]
           label: Workbench
           descriptionTitle: workbench
           description: >-
             Choose the workbench you want to install.
             The options are from: 
-            https://hub.docker.com/u/glamworkbench.
+            https://quay.io/organization/glamworkbench.
         - name: title
           type: string
           required: false
           hidden: true
           description: >-
             Details provided here will configure the user account for
-            application, which is required to log into GLAMWorkbench and the
+            application, which is required to log into GLAM Workbench and the
             remote desktop or via SSH.
         - name: password
           type: password
