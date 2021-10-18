@@ -58,7 +58,7 @@ Forms:
           type: keypair
           label: Key pair
           description: >-
-            Select the keypair to control access to instances. You can login
+            Select a keypair to control access to this instance. You can login
             to the instance using SSH with this keypair after the deployment
             has completed.
           required: false
@@ -66,7 +66,7 @@ Forms:
           type: azone
           label: Availability zone
           description: >-
-            Select availability zone where the application would be created.
+            Select the availability zone where your instance will be created.
             If you plan to use a volume for your data, this will need match
             the Availability Zone of the volume.
   - recordSetConfiguration:
@@ -81,15 +81,14 @@ Forms:
             invalid: Just lowercase letters, numbers and hyphens are allowed.
           helpText: Just lowercase letters, numbers and hyphens are allowed.
           description: >-
-            Specify a string, that will be used in instance hostname and possible
+            Specify a string that will be used in the instance's hostname and 
             DNS entry. Just letters, numbers and hyphens are allowed.
         - name: zone
           type: zone
           label: DNS zone
           description: >-
-            Select DNS zone if you'd like a DNS entry created for you.
-            A HTTPS certificate will be provisioned for you automatically if
-            you choose a zone.
+            Select a DNS zone. A HTTPS certificate will be provisioned for you 
+            automatically.
           required: false
   - volumeConfiguration:
       fields:
@@ -98,16 +97,17 @@ Forms:
           required: false
           hidden: true
           description: >-
-            It is recommended that provide a volume for the data storage of
-            this application. If provided, all user data will be stored on
-            this volume and will persist even if the application is deleted.
+            If you have created a volume for data storage you can select it 
+            here. The contents of your 'work' directory will be stored on 
+            the selected volume and will persist even if the GLAM Workbench 
+            instance is deleted.
         - name: volume
           type: volume
           label: Existing Volume
           description: >-
             You can create a new volume from the Project > Volumes > Volumes
-            tab and must be created in the same Availablity Zone as your
-            application.
+            tab. It must be created in the same Availablity Zone as your
+            instance.
           required: false
   - userConfiguration:
       fields:
@@ -122,7 +122,7 @@ Forms:
           label: Workbench
           descriptionTitle: workbench
           description: >-
-            Choose the workbench you want to install.
+            Select the GLAM Workbench repository you want to install. 
             The options are from: 
             https://quay.io/organization/glamworkbench.
         - name: title
@@ -130,15 +130,15 @@ Forms:
           required: false
           hidden: true
           description: >-
-            Details provided here will configure the user account for
-            application, which is required to log into GLAM Workbench and the
-            remote desktop or via SSH.
+            Here you configure the GLAM Workbench itself by selecting a 
+            repository and creating a password. The password will be used to 
+            log in to your GLAM Workbench instance.
         - name: password
           type: password
           label: Password
           descriptionTitle: Password
           description: >-
-            Provide password for the new user account.
+            Provide a password for this GLAM Workbench instance.
             It should be at least 7 characters, 1 capital letter,
-            1 digit and 1 specical char, except single quotes (').
+            1 digit and 1 special char, except single quotes (').
 
