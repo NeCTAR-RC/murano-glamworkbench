@@ -82,13 +82,13 @@ Forms:
           helpText: Just lowercase letters, numbers and hyphens are allowed.
           description: >-
             Specify a string that will be used in the instance's hostname and 
-            DNS entry. Just letters, numbers and hyphens are allowed.
+            DNS entry (if available). Just letters, numbers and hyphens are allowed.
         - name: zone
           type: zone
           label: DNS zone
           description: >-
-            Select a DNS zone. A HTTPS certificate will be provisioned for you 
-            automatically.
+            If you have a dedicated project allocation you can select a DNS zone. 
+            A HTTPS certificate will be provisioned for you automatically.
           required: false
   - volumeConfiguration:
       fields:
