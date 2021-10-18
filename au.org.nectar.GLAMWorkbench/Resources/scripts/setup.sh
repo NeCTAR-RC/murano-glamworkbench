@@ -38,8 +38,8 @@ if [ ! -z $DISK ] && [ -z $MOUNTPOINT ]; then
 		mount $MOUNT
 	fi
 else
-	# Use regular /home if no volume is found
-	MOUNT="/home"
+	# Use regular /home/${USERNAME} if no volume is found
+	MOUNT="/home/${USERNAME}"
 fi
 
 set +x
@@ -54,9 +54,11 @@ set -x
 # Set the workbench
 WORKBENCH="$2"
 
-echo "Downloading and Installing ${WORKBENCH}"
-su - $USERNAME -c "mkdir ~/work"
-eval HOMEDIR=~$USERNAME
+# Set the work folder
+WORKDIR="${MOUNT}/work"
+mkdir -p ${WORKDIR}
+chown "${USERNAME}:${USERNAME}" ${WORKDIR}
 
+echo "Downloading and Installing ${WORKBENCH}"
 # Spin up the container
-docker run -d --rm -p 8888:8888 --name "$WORKBENCH" -v "$HOMEDIR/work:/home/jovyan/work" "quay.io/glamworkbench/$WORKBENCH" repo2docker-entrypoint jupyter lab --ip 0.0.0.0 --ServerApp.token="$PASSWORD" --LabApp.default_url='/lab/tree/index.ipynb'
+docker run -d --rm -p 8888:8888 --name "$WORKBENCH" -v "$WORKDIR:/home/jovyan/work" "quay.io/glamworkbench/$WORKBENCH" repo2docker-entrypoint jupyter lab --ip 0.0.0.0 --ServerApp.token="$PASSWORD" --LabApp.default_url='/lab/tree/index.ipynb'
