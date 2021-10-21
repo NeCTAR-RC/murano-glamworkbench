@@ -1,4 +1,4 @@
-TARGET=au.org.nectar.GLAMWorkbench
+TARGET=au.org.nectar.GlamWorkbench
 .PHONY: package.zip
 
 all: package.zip
