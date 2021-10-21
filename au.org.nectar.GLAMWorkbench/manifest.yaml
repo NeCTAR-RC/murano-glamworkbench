@@ -12,7 +12,7 @@
 
 Format: 1.0
 Type: Application
-FullName: au.org.nectar.GLAMWorkbench
+FullName: au.org.nectar.GlamWorkbench
 Name: GLAM Workbench
 Description: |
   The GLAM Workbench is a collection of Jupyter notebooks to help researchers 
