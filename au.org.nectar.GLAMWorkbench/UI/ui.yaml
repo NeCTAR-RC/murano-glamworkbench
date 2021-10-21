@@ -21,7 +21,7 @@ Templates:
 
 Application:
   ?:
-    type: au.org.nectar.GLAMWorkbench
+    type: GlamWorkbench
   password: $.userConfiguration.password
   workbench: $.userConfiguration.workbench
   instance:

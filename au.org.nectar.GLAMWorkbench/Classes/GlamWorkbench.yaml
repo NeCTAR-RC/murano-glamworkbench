@@ -17,7 +17,7 @@ Namespaces:
   sys: io.murano.system
   conf: io.murano.configuration
 
-Name: au.org.nectar.GLAMWorkbench
+Name: GlamWorkbench
 
 Extends: std:Application
 
