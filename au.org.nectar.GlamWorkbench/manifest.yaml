@@ -27,4 +27,4 @@ Tags:
   - HASS
   - Jupyter
 Classes:
- GlamWorkbench: GlamWorkbench.yaml
+  au.org.nectar.GlamWorkbench: GlamWorkbench.yaml
