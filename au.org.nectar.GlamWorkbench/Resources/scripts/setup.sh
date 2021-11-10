@@ -61,4 +61,4 @@ chown "${USERNAME}:${USERNAME}" ${WORKDIR}
 
 echo "Downloading and Installing ${WORKBENCH}"
 # Spin up the container
-docker run -d --rm -p 8888:8888 --name "$WORKBENCH" -v "$WORKDIR:/home/jovyan/work" "quay.io/glamworkbench/$WORKBENCH" repo2docker-entrypoint jupyter lab --ip 0.0.0.0 --ServerApp.token="$PASSWORD" --LabApp.default_url='/lab/tree/index.ipynb'
+docker run -d --rm -p 8888:8888 --name "$WORKBENCH" -v "$WORKDIR:/home/jovyan/work" "registry.rc.nectar.org.au/quay.io/glamworkbench/$WORKBENCH" repo2docker-entrypoint jupyter lab --ip 0.0.0.0 --ServerApp.token="$PASSWORD" --LabApp.default_url='/lab/tree/index.ipynb'
