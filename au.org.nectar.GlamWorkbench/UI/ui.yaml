@@ -116,7 +116,8 @@ Forms:
           choices:  [
             ["trove-newspapers", "Trove newspapers"],
             ["trove-newspaper-harvester", "Trove newspaper & gazette harvester"],
-            ["recordsearch", "Record Search"],
+            ["digitalnz", "DigitalNZ"],
+            ["recordsearch", "NAA RecordSearch"],
             ["web-archives", "Web Archives"]
           ]
           label: Workbench
