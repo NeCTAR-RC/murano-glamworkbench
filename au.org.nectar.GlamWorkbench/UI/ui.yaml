@@ -114,10 +114,11 @@ Forms:
         - name: workbench
           type: choice
           choices:  [
-            ["trove-newspapers", "Trove newspapers"],
-            ["trove-newspaper-harvester", "Trove newspaper & gazette harvester"],
             ["digitalnz", "DigitalNZ"],
             ["recordsearch", "NAA RecordSearch"],
+            ['te-papa-api', 'Te Papa collections'],
+            ["trove-newspapers", "Trove newspapers"],
+            ["trove-newspaper-harvester", "Trove newspaper & gazette harvester"],
             ["web-archives", "Web Archives"]
           ]
           label: Workbench
