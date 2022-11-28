@@ -46,9 +46,6 @@ set +x
 # Set password for user (and don't log it)
 PASSWORD="$1"
 echo "${USERNAME}:${PASSWORD}" | chpasswd
-
-# Nuke the password from the murano log file
-sed -i "s/$PASSWORD/******/g" /var/log/murano-agent.log
 set -x
 
 # Set the workbench

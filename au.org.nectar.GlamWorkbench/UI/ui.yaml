@@ -136,11 +136,10 @@ Forms:
             repository and creating a password. The password will be used to 
             log in to your GLAM Workbench instance.
         - name: password
-          type: password
+          type: string
           label: Password
           descriptionTitle: Password
           description: >-
             Provide a password for this GLAM Workbench instance.
             It should be at least 7 characters, 1 capital letter,
             1 digit and 1 special char, except single quotes (').
-
