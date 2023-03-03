@@ -115,11 +115,21 @@ Forms:
           type: choice
           choices:  [
             ["digitalnz", "DigitalNZ"],
+            ["libraries-tasmania", "Libraries Tasmania"],
             ["recordsearch", "NAA RecordSearch"],
-            ['te-papa-api', 'Te Papa collections'],
+            ["te-papa-api", "Te Papa collections"],
+            ["trove-books", "Trove books"],
+            ["trove-images", "Trove images"],
+            ["trove-journals", "Trove journals"],
+            ["trove-lists", "Trove lists and tags"],
+            ["trove-maps", "Trove maps"],
+            ["trove-music", "Trove sound & music"],
             ["trove-newspapers", "Trove newspapers"],
             ["trove-newspaper-harvester", "Trove newspaper & gazette harvester"],
-            ["web-archives", "Web Archives"]
+            ["trove-unpublished", "Trove unpublished works"],
+            ["trove-people", "Trove people & organisations"],
+            ["web-archives", "Web Archives"],
+            ["wikidata", "Wikidata"]
           ]
           label: Workbench
           descriptionTitle: workbench
