@@ -1,16 +1,16 @@
 #!/bin/bash -xe
 
+FQDN=$1
+EMAIL=$2
+
 # Wait for apt lock to be released
 while sudo fuser /var/{lib/{dpkg,apt/lists},cache/apt/archives}/lock >/dev/null 2>&1; do
    sleep 1
 done
 
-add-apt-repository -y ppa:certbot/certbot
 apt-get -y update
 apt-get -y install certbot python3-certbot-nginx
 
-FQDN=$1
-EMAIL=$2
 
 NGINX_CFG=/etc/nginx/nginx.conf
 NGINX_VHOST_CFG=/etc/nginx/sites-enabled/default
